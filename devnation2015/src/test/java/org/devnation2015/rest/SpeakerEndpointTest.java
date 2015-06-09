@@ -2,7 +2,6 @@ package org.devnation2015.rest;
 
 import javax.inject.Inject;
 
-import org.devnation2015.beans.Greeter;
 import org.devnation2015.model.Speaker;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
