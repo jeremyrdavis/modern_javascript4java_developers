@@ -1,6 +1,9 @@
 # Eclipse stuff
 .metadata/
 
+# Maven stuff
+**/target/
+
 # OS stuff
 RemoteSystemsTempFiles/
 

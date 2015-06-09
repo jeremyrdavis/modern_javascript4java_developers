@@ -27,86 +27,83 @@ import org.devnation2015.model.Speaker;
  */
 @Stateless
 @Path("/speakers")
-public class SpeakerEndpoint
-{
-   @PersistenceContext(unitName = "devnation2015-persistence-unit")
-   private EntityManager em;
+public class SpeakerEndpoint {
+	@PersistenceContext(unitName = "devnation2015-persistence-unit")
+	private EntityManager em;
 
-   @POST
-   @Consumes("application/json")
-   public Response create(Speaker entity)
-   {
-      em.persist(entity);
-      return Response.created(UriBuilder.fromResource(SpeakerEndpoint.class).path(String.valueOf(entity.getId())).build()).build();
-   }
+	public String foo() {
+		return "Foo";
+	}
 
-   @DELETE
-   @Path("/{id:[0-9][0-9]*}")
-   public Response deleteById(@PathParam("id") Long id)
-   {
-      Speaker entity = em.find(Speaker.class, id);
-      if (entity == null)
-      {
-         return Response.status(Status.NOT_FOUND).build();
-      }
-      em.remove(entity);
-      return Response.noContent().build();
-   }
+	@POST
+	@Consumes("application/json")
+	public Response create(Speaker entity) {
+		em.persist(entity);
+		return Response.created(
+				UriBuilder.fromResource(SpeakerEndpoint.class)
+						.path(String.valueOf(entity.getId())).build()).build();
+	}
 
-   @GET
-   @Path("/{id:[0-9][0-9]*}")
-   @Produces("application/json")
-   public Response findById(@PathParam("id") Long id)
-   {
-      TypedQuery<Speaker> findByIdQuery = em.createQuery("SELECT DISTINCT s FROM Speaker s WHERE s.id = :entityId ORDER BY s.id", Speaker.class);
-      findByIdQuery.setParameter("entityId", id);
-      Speaker entity;
-      try
-      {
-         entity = findByIdQuery.getSingleResult();
-      }
-      catch (NoResultException nre)
-      {
-         entity = null;
-      }
-      if (entity == null)
-      {
-         return Response.status(Status.NOT_FOUND).build();
-      }
-      return Response.ok(entity).build();
-   }
+	@DELETE
+	@Path("/{id:[0-9][0-9]*}")
+	public Response deleteById(@PathParam("id") Long id) {
+		Speaker entity = em.find(Speaker.class, id);
+		if (entity == null) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		em.remove(entity);
+		return Response.noContent().build();
+	}
 
-   @GET
-   @Produces("application/json")
-   public List<Speaker> listAll(@QueryParam("start") Integer startPosition, @QueryParam("max") Integer maxResult)
-   {
-      TypedQuery<Speaker> findAllQuery = em.createQuery("SELECT DISTINCT s FROM Speaker s ORDER BY s.id", Speaker.class);
-      if (startPosition != null)
-      {
-         findAllQuery.setFirstResult(startPosition);
-      }
-      if (maxResult != null)
-      {
-         findAllQuery.setMaxResults(maxResult);
-      }
-      final List<Speaker> results = findAllQuery.getResultList();
-      return results;
-   }
+	@GET
+	@Path("/{id:[0-9][0-9]*}")
+	@Produces("application/json")
+	public Response findById(@PathParam("id") Long id) {
+		TypedQuery<Speaker> findByIdQuery = em
+				.createQuery(
+						"SELECT DISTINCT s FROM Speaker s WHERE s.id = :entityId ORDER BY s.id",
+						Speaker.class);
+		findByIdQuery.setParameter("entityId", id);
+		Speaker entity;
+		try {
+			entity = findByIdQuery.getSingleResult();
+		} catch (NoResultException nre) {
+			entity = null;
+		}
+		if (entity == null) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(entity).build();
+	}
 
-   @PUT
-   @Path("/{id:[0-9][0-9]*}")
-   @Consumes("application/json")
-   public Response update(Speaker entity)
-   {
-      try
-      {
-         entity = em.merge(entity);
-      }
-      catch (OptimisticLockException e)
-      {
-         return Response.status(Response.Status.CONFLICT).entity(e.getEntity()).build();
-      }
+	@GET
+	@Produces("application/json")
+	public List<Speaker> listAll(@QueryParam("start") Integer startPosition,
+			@QueryParam("max") Integer maxResult) {
+		TypedQuery<Speaker> findAllQuery = em
+				.createQuery("SELECT DISTINCT s FROM Speaker s ORDER BY s.id",
+						Speaker.class);
+		if (startPosition != null) {
+			findAllQuery.setFirstResult(startPosition);
+		}
+		if (maxResult != null) {
+			findAllQuery.setMaxResults(maxResult);
+		}
+		final List<Speaker> results = findAllQuery.getResultList();
+		return results;
+	}
 
-      return Response.noContent().build();
-   }
+	@PUT
+	@Path("/{id:[0-9][0-9]*}")
+	@Consumes("application/json")
+	public Response update(Speaker entity) {
+		try {
+			entity = em.merge(entity);
+		} catch (OptimisticLockException e) {
+			return Response.status(Response.Status.CONFLICT)
+					.entity(e.getEntity()).build();
+		}
+
+		return Response.noContent().build();
+	}
 }
