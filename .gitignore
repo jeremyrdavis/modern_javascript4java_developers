@@ -1,6 +1,9 @@
 # Eclipse stuff
 .metadata/
 
+# Idea stuff
+.idea
+
 # Maven stuff
 devnation2015/target/
 
