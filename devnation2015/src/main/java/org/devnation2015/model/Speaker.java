@@ -1,143 +1,142 @@
 package org.devnation2015.model;
 
 import javax.persistence.Entity;
+
 import java.io.Serializable;
+
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
+
 import java.lang.Override;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-public class Speaker implements Serializable
-{
+public class Speaker implements Serializable {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   @Column(name = "id", updatable = false, nullable = false)
-   private Long id;
-   @Version
-   @Column(name = "version")
-   private int version;
+	private static final long serialVersionUID = 8241752106353722748L;
 
-   @Column
-   private String firstname;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
+	@Version
+	@Column(name = "version")
+	private int version;
 
-   @Column
-   private String lastname;
+	@Column
+	private String firstname;
 
-   @Column(length = 2000)
-   private String bio;
+	@Column
+	private String lastname;
 
-   @Column
-   private String twitter;
+	@Column(length = 2000)
+	private String bio;
 
-   public Long getId()
-   {
-      return this.id;
-   }
+	@Column
+	private String twitter;
 
-   public void setId(final Long id)
-   {
-      this.id = id;
-   }
+	public Speaker(Long id, int version, String firstname, String lastname,
+			String bio, String twitter) {
+		super();
+		this.id = id;
+		this.version = version;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.bio = bio;
+		this.twitter = twitter;
+	}
+	
+	public Speaker(){};
 
-   public int getVersion()
-   {
-      return this.version;
-   }
+	public Long getId() {
+		return this.id;
+	}
 
-   public void setVersion(final int version)
-   {
-      this.version = version;
-   }
+	public void setId(final Long id) {
+		this.id = id;
+	}
 
-   @Override
-   public boolean equals(Object obj)
-   {
-      if (this == obj)
-      {
-         return true;
-      }
-      if (!(obj instanceof Speaker))
-      {
-         return false;
-      }
-      Speaker other = (Speaker) obj;
-      if (id != null)
-      {
-         if (!id.equals(other.id))
-         {
-            return false;
-         }
-      }
-      return true;
-   }
+	public int getVersion() {
+		return this.version;
+	}
 
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((id == null) ? 0 : id.hashCode());
-      return result;
-   }
+	public void setVersion(final int version) {
+		this.version = version;
+	}
 
-   public String getFirstname()
-   {
-      return firstname;
-   }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Speaker)) {
+			return false;
+		}
+		Speaker other = (Speaker) obj;
+		if (id != null) {
+			if (!id.equals(other.id)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-   public void setFirstname(String firstname)
-   {
-      this.firstname = firstname;
-   }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-   public String getLastname()
-   {
-      return lastname;
-   }
+	public String getFirstname() {
+		return firstname;
+	}
 
-   public void setLastname(String lastname)
-   {
-      this.lastname = lastname;
-   }
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-   public String getBio()
-   {
-      return bio;
-   }
+	public String getLastname() {
+		return lastname;
+	}
 
-   public void setBio(String bio)
-   {
-      this.bio = bio;
-   }
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
 
-   public String getTwitter()
-   {
-      return twitter;
-   }
+	public String getBio() {
+		return bio;
+	}
 
-   public void setTwitter(String twitter)
-   {
-      this.twitter = twitter;
-   }
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
 
-   @Override
-   public String toString()
-   {
-      String result = getClass().getSimpleName() + " ";
-      if (firstname != null && !firstname.trim().isEmpty())
-         result += "firstname: " + firstname;
-      if (lastname != null && !lastname.trim().isEmpty())
-         result += ", lastname: " + lastname;
-      if (bio != null && !bio.trim().isEmpty())
-         result += ", bio: " + bio;
-      if (twitter != null && !twitter.trim().isEmpty())
-         result += ", twitter: " + twitter;
-      return result;
-   }
+	public String getTwitter() {
+		return twitter;
+	}
+
+	public void setTwitter(String twitter) {
+		this.twitter = twitter;
+	}
+
+	@Override
+	public String toString() {
+		String result = getClass().getSimpleName() + " ";
+		if (firstname != null && !firstname.trim().isEmpty())
+			result += "firstname: " + firstname;
+		if (lastname != null && !lastname.trim().isEmpty())
+			result += ", lastname: " + lastname;
+		if (bio != null && !bio.trim().isEmpty())
+			result += ", bio: " + bio;
+		if (twitter != null && !twitter.trim().isEmpty())
+			result += ", twitter: " + twitter;
+		return result;
+	}
 }

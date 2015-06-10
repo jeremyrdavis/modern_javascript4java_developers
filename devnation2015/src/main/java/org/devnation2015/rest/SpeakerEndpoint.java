@@ -28,12 +28,9 @@ import org.devnation2015.model.Speaker;
 @Stateless
 @Path("/speakers")
 public class SpeakerEndpoint {
+	
 	@PersistenceContext(unitName = "devnation2015-persistence-unit")
 	private EntityManager em;
-
-	public String foo() {
-		return "Foo";
-	}
 
 	@POST
 	@Consumes("application/json")

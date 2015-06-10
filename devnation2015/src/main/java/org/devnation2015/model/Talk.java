@@ -15,148 +15,128 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-public class Talk implements Serializable
-{
+public class Talk implements Serializable {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   @Column(name = "id", updatable = false, nullable = false)
-   private Long id;
-   @Version
-   @Column(name = "version")
-   private int version;
+	private static final long serialVersionUID = 4687419478316852450L;
 
-   @Column
-   @NotNull
-   private String title;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
+	@Version
+	@Column(name = "version")
+	private int version;
 
-   @Column(length = 2000)
-   @Size
-   private String description;
+	@Column
+	@NotNull
+	private String title;
 
-   @Column
-   @NotNull
-   private String room;
+	@Column(length = 2000)
+	@Size
+	private String description;
 
-   @Column
-   private String date;
+	@Column
+	@NotNull
+	private String room;
 
-   @Column
-   private Speaker speakers;
+	@Column
+	private String date;
 
-   public Long getId()
-   {
-      return this.id;
-   }
+	@Column
+	private Speaker speakers;
 
-   public void setId(final Long id)
-   {
-      this.id = id;
-   }
+	public Long getId() {
+		return this.id;
+	}
 
-   public int getVersion()
-   {
-      return this.version;
-   }
+	public void setId(final Long id) {
+		this.id = id;
+	}
 
-   public void setVersion(final int version)
-   {
-      this.version = version;
-   }
+	public int getVersion() {
+		return this.version;
+	}
 
-   @Override
-   public boolean equals(Object obj)
-   {
-      if (this == obj)
-      {
-         return true;
-      }
-      if (!(obj instanceof Talk))
-      {
-         return false;
-      }
-      Talk other = (Talk) obj;
-      if (id != null)
-      {
-         if (!id.equals(other.id))
-         {
-            return false;
-         }
-      }
-      return true;
-   }
+	public void setVersion(final int version) {
+		this.version = version;
+	}
 
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((id == null) ? 0 : id.hashCode());
-      return result;
-   }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Talk)) {
+			return false;
+		}
+		Talk other = (Talk) obj;
+		if (id != null) {
+			if (!id.equals(other.id)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-   public String getTitle()
-   {
-      return title;
-   }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-   public void setTitle(String title)
-   {
-      this.title = title;
-   }
+	public String getTitle() {
+		return title;
+	}
 
-   public String getDescription()
-   {
-      return description;
-   }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-   public void setDescription(String description)
-   {
-      this.description = description;
-   }
+	public String getDescription() {
+		return description;
+	}
 
-   public String getRoom()
-   {
-      return room;
-   }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-   public void setRoom(String room)
-   {
-      this.room = room;
-   }
+	public String getRoom() {
+		return room;
+	}
 
-   public String getDate()
-   {
-      return date;
-   }
+	public void setRoom(String room) {
+		this.room = room;
+	}
 
-   public void setDate(String date)
-   {
-      this.date = date;
-   }
+	public String getDate() {
+		return date;
+	}
 
-   public Speaker getSpeakers()
-   {
-      return speakers;
-   }
+	public void setDate(String date) {
+		this.date = date;
+	}
 
-   public void setSpeakers(Speaker speakers)
-   {
-      this.speakers = speakers;
-   }
+	public Speaker getSpeakers() {
+		return speakers;
+	}
 
-   @Override
-   public String toString()
-   {
-      String result = getClass().getSimpleName() + " ";
-      if (title != null && !title.trim().isEmpty())
-         result += "title: " + title;
-      if (description != null && !description.trim().isEmpty())
-         result += ", description: " + description;
-      if (room != null && !room.trim().isEmpty())
-         result += ", room: " + room;
-      if (date != null && !date.trim().isEmpty())
-         result += ", date: " + date;
-      return result;
-   }
+	public void setSpeakers(Speaker speakers) {
+		this.speakers = speakers;
+	}
+
+	@Override
+	public String toString() {
+		String result = getClass().getSimpleName() + " ";
+		if (title != null && !title.trim().isEmpty())
+			result += "title: " + title;
+		if (description != null && !description.trim().isEmpty())
+			result += ", description: " + description;
+		if (room != null && !room.trim().isEmpty())
+			result += ", room: " + room;
+		if (date != null && !date.trim().isEmpty())
+			result += ", date: " + date;
+		return result;
+	}
 }
