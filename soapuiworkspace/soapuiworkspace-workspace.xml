@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-workspace name="/Users/jeremydavis/Workspace/devnation2015/soapuiworkspace" soapui-version="5.1.3" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:project name="REST Project 1">/Users/jeremydavis/Workspace/devnation2015/soapuiworkspace/devnation2015-soapui-project.xml</con:project>
+</con:soapui-workspace>

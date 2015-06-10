@@ -2,7 +2,7 @@
 .metadata/
 
 # Maven stuff
-**/target/
+devnation2015/target/
 
 # OS stuff
 RemoteSystemsTempFiles/
